@@ -44,7 +44,18 @@ class FCMService : FirebaseMessagingService() {
     private const val TAG = "${PushPlugin.PREFIX_TAG} (FCMService)"
 
     private val messageMap = HashMap<Int, ArrayList<String?>>()
+    private val FLAG_MUTABLE = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      PendingIntent.FLAG_MUTABLE
+    } else {
+      PendingIntent.FLAG_IMMUTABLE
+    }
+    private val FLAG_IMMUTABLE = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      PendingIntent.FLAG_IMMUTABLE
+    } else {
+      PendingIntent.FLAG_IMMUTABLE
+    }
 
+ /**
     private val FLAG_MUTABLE = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       PendingIntent.FLAG_MUTABLE
     } else {
@@ -55,6 +66,7 @@ class FCMService : FirebaseMessagingService() {
     } else {
       0
     }
+  */
 
     /**
      * Get the Application Name from Label
